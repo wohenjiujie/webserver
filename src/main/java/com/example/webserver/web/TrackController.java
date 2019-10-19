@@ -2,6 +2,8 @@ package com.example.webserver.web;
 
 import com.example.webserver.bean.JsonResult;
 import com.example.webserver.bean.TrackCounts;
+import com.example.webserver.bean.TrackID;
+import com.example.webserver.bean.TrackInfo;
 import com.example.webserver.service.TrackService;
 import com.example.webserver.service.impl.TrackServiceImpl;
 
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -21,102 +24,94 @@ import java.util.List;
 /**
  * Created by INvo
  * on 2019/10/6.
+ * 与Web交互的接口的部分
  */
 @RestController
 public class TrackController {
 
-    /*
-     * 与web交互的接口的部分
-     * */
     @Autowired
     private TrackService trackService;
-    JdbcTemplate jdbcTemplate;
-
 
     /**
-     * 查询counts：通过tid查询当前终端下的记录次数--Web交互
+     * 查询counts：通过tid查询当前终端下的记录次数
      *
      * @param integer
      * @return
      */
-    @GetMapping(value = "searchCounts/{tid}")
+    @GetMapping(value = "/searchCounts/{tid}")
     public int searchCounts(@PathVariable(value = "tid") Integer integer) {
-//        TrackCounts trackCounts = trackService.getTerminalIdCounts(integer);
         return trackService.getTerminalIdCounts(integer);
-        /*TrackCounts trackCounts = trackService.getTerminalIdCounts(integer);
-        return trackCounts.getCounts();*/
     }
 
     /**
-     * 查询列表
+     * 增加counts：通过tid增加当前终端下的记录次数
      *
+     * @param integer
+     */
+    @GetMapping(value = "/increaseCounts/{tid}")
+    public void increaseTerminalIdCounts(@PathVariable(value = "tid") Integer integer) {
+        TrackCounts trackCounts = trackService.getTrackCounts(integer);
+        trackService.increaseTerminalIdCounts(integer, trackCounts.getCounts() + 1);
+        int re = trackCounts.getCounts() + 1;
+        System.out.println(integer + "\n" + re);
+    }
+
+    /**
+     * 减少counts：通过tid减少当前终端下的记录次数
+     *
+     * @param integer
+     */
+    @GetMapping(value = "/decreaseCounts/{tid}")
+    public void decreaseTerminalIdCounts(@PathVariable(value = "tid") Integer integer) {
+        TrackCounts trackCounts = trackService.getTrackCounts(integer);
+        trackService.decreaseTerminalIdCounts(integer, trackCounts.getCounts() - 1);
+    }
+
+    /**
+     * 查询track：通过terminal查询当前终端下的所有track
+     *
+     * @param integer
      * @return
      */
-    @RequestMapping(value = "all", method = RequestMethod.GET)
-    public List<TrackCounts> getInfoList() {
+    @RequestMapping(value = "/searchTrackID/{terminal}", method = RequestMethod.GET)
+    public List<TrackID> getTrackID(@PathVariable(value = "terminal") Integer integer) {
+
         try {
-            List<TrackCounts> trackCountsList = trackService.getInfoList();
-            return trackCountsList;
+            List<TrackID> trackIDList = trackService.getTrackID(integer);
+            return trackIDList;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    @GetMapping(value = "addCounts/{tid}")
-    public void addTerminalIdCounts(@PathVariable(value = "tid") Integer tid) {
-        trackService.addTerminalIdCounts(tid,trackService.getTerminalIdCounts(tid) + 1);
-//        trackService = null;
+    /**
+     * 添加track：通过terminal添加track
+     *
+     * @param trackInfo
+     */
+    @RequestMapping(value = "/addTrackInfo", method = RequestMethod.POST)
+    public void addTrackID(@RequestBody TrackInfo trackInfo) {
+        trackService.addTrack(trackInfo);
     }
 
-
-//    @RequestMapping(value = "addCounts/{tid}" ,method = RequestMethod.PUT)
-    /*public void addTerminalIdCounts(@PathVariable(value = "tid") Integer integer) {
-        TrackCounts trackCounts = trackService.addTerminalIdCounts(integer);
-        String sql = "update trackCounts set counts=?where tid="+integer;
-        Object[] objects = new Object[]{
-            integer,
-                trackCounts.getCounts()+1
-        };
-        jdbcTemplate.update(sql, objects);
+    /**
+     * 删除track：通过terminal删除track
+     *
+     * @param trackInfo
+     */
+    /*@RequestMapping(value = "/deleteTrackInfo", method = RequestMethod.POST)
+    public void deleteTrackID(@RequestParam TrackInfo trackInfo) {
+        trackService.deleteTrack(trackInfo);
     }*/
-    /*public String addTerminalIdCounts(@RequestBody TrackCounts trackCounts) {
-//    public String addTerminalIdCounts(@PathVariable(value = "tid")Integer integer) {
-        int result = trackService.addTerminalIdCounts(trackCounts);
+    @RequestMapping(value = "/deleteTrackInfo/{terminal}&{track}", method = RequestMethod.GET)
+    public void deleteTrackID(@PathVariable(value = "terminal")Integer terminal,@PathVariable(value = "track")Integer track) {
+        trackService.deleteTrack1(terminal,track);
+    }
 
-        if (result == 1) {
-            return "success";
-        } else {
-            return "error";
-        }
-    }*/
+    @RequestMapping(value = "/addTrackInfosss", method = RequestMethod.POST)
+    public void addTrackInfo(@RequestBody TrackInfo trackInfo) {
 
-    /*public ResponseEntity<JsonResult> addTerminalIdCounts(@PathVariable(value = "tid") Integer integer) {
-        JsonResult jsonResult = new JsonResult();
-        try {
-            TrackCounts trackCounts = trackService.addTerminalIdCounts(integer);
-//            trackCounts.setCounts(trackCounts.getCounts() + 1);
-            int update = trackService.addTerminalIdCounts(integer);
-            jsonResult.setResult(update);
-            jsonResult.setStatus("true");
-        } catch (Exception e) {
-            jsonResult.setResult(e.getClass()+":"+e.getMessage());
-            jsonResult.setStatus("Error!!!");
-            e.printStackTrace();
-        }
-        return ResponseEntity.ok(jsonResult);
-    }*/
+    }
 
-    /*public TrackCounts addCounts(@PathVariable(value = "tid")Integer integer) {
-        TrackCounts trackCounts = trackService.addTerminalIdCounts(integer);
-//        TrackCounts.setCounts(trackCounts.getCounts()+1);
-//        int a = trackService.addTerminalIdCounts(integer)+1;
-        String sql = "update trackCounts set counts=?where tid=?";
-        Object[] objects = new Object[]{
-                trackCounts.getTid(),
-                trackCounts.getCounts()+1
-        };
-        jdbcTemplate.update(sql, objects);
-        return trackCounts;
-    }*/
 }
