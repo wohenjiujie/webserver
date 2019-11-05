@@ -69,7 +69,14 @@ public interface TrackService {
      */
     void deleteTrack( TrackInfo trackInfo);
 
-    void deleteTrack1(Integer terminal,Integer track);
+   /* void deleteTrack1(Integer terminal,Integer track);
 
-    void addTrackInfo(TrackInfo trackInfo);
+    void addTrackInfo(TrackInfo trackInfo);*/
+
+    /**
+     *
+     * @param trackInfo
+     * @return
+     */
+    TrackInfo getTrackInfo(TrackInfo trackInfo);
 }

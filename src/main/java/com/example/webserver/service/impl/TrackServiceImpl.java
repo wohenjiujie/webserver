@@ -62,12 +62,17 @@ public class TrackServiceImpl implements TrackService {
         trackMapper.deleteTrack(trackInfo);
     }
 
-    @Override
+    /*@Override
     public void addTrackInfo(TrackInfo trackInfo) {
         trackMapper.addTrackInfo(trackInfo);
     }
     @Override
     public void deleteTrack1(Integer terminal,Integer track) {
         trackMapper.deleteTrack1(terminal,track);
+    }*/
+
+    @Override
+    public TrackInfo getTrackInfo(TrackInfo trackInfo) {
+        return trackMapper.getTrackInfo(trackInfo);
     }
 }

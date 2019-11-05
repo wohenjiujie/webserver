@@ -69,21 +69,24 @@ public interface TrackMapper {
      *
      * @param trackInfo
      */
-    @Insert("insert into trackInfo(terminal,track) values(#{terminal},#{track})")
+    @Insert("insert into trackInfo(terminal,track,date,time,description)values(#{terminal},#{track},#{date},#{time},#{description})")
     void addTrack(TrackInfo trackInfo);
 
+//    values(#{terminal},#{track},#{date},#{time},#{desc})
     /**
      * 删除track：通过terminal删除track
      *
      * @param trackInfo
      */
-//    @Delete("delete from trackInfo where terminal=#{terminal} and track=#{track}")
-    @Delete("delete from test where terminal=#{terminal} and track=#{track}")
+    @Delete("delete from trackInfo where terminal=#{terminal} and track=#{track}")
     void deleteTrack(TrackInfo trackInfo);
 
-    @Delete("delete from test where terminal=#{terminal} and track=#{track}")
+   /* @Delete("delete from test where terminal=#{terminal} and track=#{track}")
     void deleteTrack1(Integer terminal,Integer track);
 
     @Insert("insert into trackInfo(terminal,track,desc,date,mileage,time) values(#{terminal},#{track},#{desc},#{date},#{mileage},#{time})")
-    void addTrackInfo(TrackInfo trackInfo);
+    void addTrackInfo(TrackInfo trackInfo);*/
+
+    @Select("select * from trackInfo where terminal=#{terminal} and track=#{track}")
+    TrackInfo getTrackInfo(TrackInfo trackInfo);
 }

@@ -51,9 +51,9 @@ public class TrackController {
     @GetMapping(value = "/increaseCounts/{tid}")
     public void increaseTerminalIdCounts(@PathVariable(value = "tid") Integer integer) {
         TrackCounts trackCounts = trackService.getTrackCounts(integer);
-        trackService.increaseTerminalIdCounts(integer, trackCounts.getCounts() + 1);
-        int re = trackCounts.getCounts() + 1;
-        System.out.println(integer + "\n" + re);
+        trackService.increaseTerminalIdCounts(integer, (Integer) trackCounts.getCounts() + 1);
+//        int re = (Integer)trackCounts.getCounts() + 1;
+//        System.out.println(integer + "\n" + re);
     }
 
     /**
@@ -64,7 +64,7 @@ public class TrackController {
     @GetMapping(value = "/decreaseCounts/{tid}")
     public void decreaseTerminalIdCounts(@PathVariable(value = "tid") Integer integer) {
         TrackCounts trackCounts = trackService.getTrackCounts(integer);
-        trackService.decreaseTerminalIdCounts(integer, trackCounts.getCounts() - 1);
+        trackService.decreaseTerminalIdCounts(integer, (Integer) trackCounts.getCounts() - 1);
     }
 
     /**
@@ -100,18 +100,13 @@ public class TrackController {
      *
      * @param trackInfo
      */
-    /*@RequestMapping(value = "/deleteTrackInfo", method = RequestMethod.POST)
-    public void deleteTrackID(@RequestParam TrackInfo trackInfo) {
+    @RequestMapping(value = "/deleteTrackInfo", method = RequestMethod.POST)
+    public void deleteTrackID(@RequestBody TrackInfo trackInfo) {
         trackService.deleteTrack(trackInfo);
-    }*/
-    @RequestMapping(value = "/deleteTrackInfo/{terminal}&{track}", method = RequestMethod.GET)
-    public void deleteTrackID(@PathVariable(value = "terminal")Integer terminal,@PathVariable(value = "track")Integer track) {
-        trackService.deleteTrack1(terminal,track);
     }
 
-    @RequestMapping(value = "/addTrackInfosss", method = RequestMethod.POST)
-    public void addTrackInfo(@RequestBody TrackInfo trackInfo) {
-
+    @RequestMapping(value = "/getTrackInfo", method = RequestMethod.POST)
+    public TrackInfo getTrackInfo(@RequestBody TrackInfo trackInfo) {
+        return trackService.getTrackInfo(trackInfo);
     }
-
 }

@@ -9,10 +9,9 @@ public class TrackInfo {
 
     private Integer terminal;
     private Integer track;
-   /* private String desc;
     private String date;
-    private float mileage;
-    private float time;*/
+    private String time;
+    private String description;
 
     public Integer getTerminal() {
         return terminal;
@@ -30,14 +29,6 @@ public class TrackInfo {
         this.track = track;
     }
 
-   /* public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
     public String getDate() {
         return date;
     }
@@ -46,19 +37,19 @@ public class TrackInfo {
         this.date = date;
     }
 
-    public float getMileage() {
-        return mileage;
-    }
-
-    public void setMileage(float mileage) {
-        this.mileage = mileage;
-    }
-
-    public float getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(float time) {
+    public void setTime(String time) {
         this.time = time;
-    }*/
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

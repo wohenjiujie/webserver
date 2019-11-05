@@ -5,42 +5,27 @@ package com.example.webserver.bean;
  * on 2019/10/6.
  * 轨迹计数实体类
  */
-public class TrackCounts {
+public class TrackCounts<T>{
 
-    private Integer counts;
-    private Integer tid;
+    private T counts;
+    private T tid;
 
 
 
-    public Integer getCounts() {
+    public T getCounts() {
         return counts;
     }
 
-    public void setCounts(Integer counts) {
+    public void setCounts(T counts) {
         this.counts = counts;
     }
 
-    public Integer getTid() {
+    public T getTid() {
         return tid;
     }
 
-    public void setTid(Integer tid) {
+    public void setTid(T tid) {
         this.tid = tid;
     }
 
-    /*public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }*/
 }
