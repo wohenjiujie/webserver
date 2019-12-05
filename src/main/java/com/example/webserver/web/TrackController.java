@@ -109,4 +109,21 @@ public class TrackController {
     public TrackInfo getTrackInfo(@RequestBody TrackInfo trackInfo) {
         return trackService.getTrackInfo(trackInfo);
     }
+
+    @RequestMapping(value = "/getTerminalInfo/{terminal}", method = RequestMethod.GET)
+    public List<TrackInfo> getTerminalInfo(@PathVariable(value = "terminal") Integer integer) {
+        try {
+            List<TrackInfo> trackInfoList = trackService.getTerminalInfo(integer);
+            return trackInfoList;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+//    @RequestMapping(value = "/createTrackCounts/{tid}", method = RequestMethod.GET)
+    @GetMapping(value = "/createTrackCounts/{tid}")
+    public void createTrackCounts(@PathVariable(value = "tid") Integer tid) {
+        trackService.createTrackCounts(tid,0);
+    }
 }

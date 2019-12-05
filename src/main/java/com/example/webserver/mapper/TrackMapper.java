@@ -29,6 +29,15 @@ public interface TrackMapper {
     TrackCounts getTrackCounts(Integer integer);
 
     /**
+     *
+     * @param tid
+     * @param counts
+     */
+
+    @Insert("insert into trackCounts (tid,counts) values (#{tid},#{counts})")
+    void createTrackCounts(Integer tid, Integer counts);
+
+    /**
      * 查询counts：通过tid查询当前终端下的记录次数
      *
      * @param integer
@@ -73,6 +82,7 @@ public interface TrackMapper {
     void addTrack(TrackInfo trackInfo);
 
 //    values(#{terminal},#{track},#{date},#{time},#{desc})
+
     /**
      * 删除track：通过terminal删除track
      *
@@ -89,4 +99,7 @@ public interface TrackMapper {
 
     @Select("select * from trackInfo where terminal=#{terminal} and track=#{track}")
     TrackInfo getTrackInfo(TrackInfo trackInfo);
+
+    @Select("select * from trackInfo where terminal=#{terminal}")
+    List<TrackInfo> getTerminalInfo(Integer integer);
 }

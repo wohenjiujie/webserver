@@ -23,6 +23,8 @@ public interface TrackService {
      */
     TrackCounts getTrackCounts(Integer integer);
 
+    void createTrackCounts(Integer tid,Integer counts);
+
     /**
      * 查询counts：通过tid查询当前终端下的记录次数
      *
@@ -79,4 +81,7 @@ public interface TrackService {
      * @return
      */
     TrackInfo getTrackInfo(TrackInfo trackInfo);
+
+
+    List<TrackInfo> getTerminalInfo(Integer integer);
 }

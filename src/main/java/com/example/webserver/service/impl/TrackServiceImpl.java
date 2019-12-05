@@ -52,6 +52,8 @@ public class TrackServiceImpl implements TrackService {
         return trackMapper.getTrackID(integer);
     }
 
+
+
     @Override
     public void addTrack(TrackInfo trackInfo) {
         trackMapper.addTrack(trackInfo);
@@ -74,5 +76,15 @@ public class TrackServiceImpl implements TrackService {
     @Override
     public TrackInfo getTrackInfo(TrackInfo trackInfo) {
         return trackMapper.getTrackInfo(trackInfo);
+    }
+
+    @Override
+    public void createTrackCounts(Integer tid,Integer counts) {
+        trackMapper.createTrackCounts(tid,counts);
+    }
+
+    @Override
+    public List<TrackInfo> getTerminalInfo(Integer integer) {
+        return trackMapper.getTerminalInfo(integer);
     }
 }
