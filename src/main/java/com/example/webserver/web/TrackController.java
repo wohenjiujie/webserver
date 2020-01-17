@@ -103,7 +103,7 @@ public class TrackController {
      */
     @RequestMapping(value = "/deleteTrackInfo", method = RequestMethod.POST)
     public void deleteTrackID(@RequestBody TrackInfo trackInfo) {
-        trackService.deleteTrack(trackInfo);
+            trackService.deleteTrack(trackInfo);
     }
 
     @RequestMapping(value = "/getTrackInfo", method = RequestMethod.POST)
@@ -111,6 +111,13 @@ public class TrackController {
         return trackService.getTrackInfo(trackInfo);
     }
 
+
+    /**
+     * 查询trackInfo：通过terminalID查询该终端下的所有轨迹信息
+     *
+     * @param integer
+     * @return
+     */
     @RequestMapping(value = "/getTerminalInfo/{terminal}", method = RequestMethod.GET)
     public List<TrackInfo> getTerminalInfo(@PathVariable(value = "terminal") Integer integer) {
         try {
@@ -122,9 +129,9 @@ public class TrackController {
         return null;
     }
 
-//    @RequestMapping(value = "/createTrackCounts/{tid}", method = RequestMethod.GET)
+    //    @RequestMapping(value = "/createTrackCounts/{tid}", method = RequestMethod.GET)
     @GetMapping(value = "/createTrackCounts/{tid}")
     public void createTrackCounts(@PathVariable(value = "tid") Integer tid) {
-        trackService.createTrackCounts(tid,0);
+        trackService.createTrackCounts(tid, 0);
     }
 }

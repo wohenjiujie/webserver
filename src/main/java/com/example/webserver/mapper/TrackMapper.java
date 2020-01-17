@@ -29,7 +29,7 @@ public interface TrackMapper {
     TrackCounts getTrackCounts(Integer integer);
 
     /**
-     *
+     *移动端注册时的初始化创建
      * @param tid
      * @param counts
      */
@@ -100,6 +100,10 @@ public interface TrackMapper {
     @Select("select * from trackInfo where terminal=#{terminal} and track=#{track}")
     TrackInfo getTrackInfo(TrackInfo trackInfo);
 
-    @Select("select * from trackInfo where terminal=#{terminal}")
-    List<TrackInfo> getTerminalInfo(Integer integer);
+//    @Select("select * from trackInfo where terminal=#{terminal}")
+@Select("select * from trackInfo where terminal=#{terminal} order by 4 desc")
+List<TrackInfo> getTerminalInfo(Integer integer);
+
 }
+
+

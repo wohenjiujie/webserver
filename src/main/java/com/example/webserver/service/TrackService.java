@@ -23,6 +23,11 @@ public interface TrackService {
      */
     TrackCounts getTrackCounts(Integer integer);
 
+    /**
+     *
+     * @param tid
+     * @param counts
+     */
     void createTrackCounts(Integer tid,Integer counts);
 
     /**
