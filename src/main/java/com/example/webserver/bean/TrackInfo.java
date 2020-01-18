@@ -12,7 +12,7 @@ public class TrackInfo {
     private String date;
     private String time;
     private String description;
-    private String averageSpeed;
+    private String mileage;
 
     public Integer getTerminal() {
         return terminal;
@@ -54,11 +54,11 @@ public class TrackInfo {
         this.description = description;
     }
 
-    public String getAverageSpeed() {
-        return averageSpeed;
+    public String getMileage() {
+        return mileage;
     }
 
-    public void setAverageSpeed(String averageSpeed) {
-        this.averageSpeed = averageSpeed;
+    public void setMileage(String mileage) {
+        this.mileage = mileage;
     }
 }
