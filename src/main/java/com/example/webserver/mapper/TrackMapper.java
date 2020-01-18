@@ -78,7 +78,7 @@ public interface TrackMapper {
      *
      * @param trackInfo
      */
-    @Insert("insert into trackInfo(terminal,track,date,time,description)values(#{terminal},#{track},#{date},#{time},#{description})")
+    @Insert("insert into trackInfo(terminal,track,date,time,description,averageSpeed)values(#{terminal},#{track},#{date},#{time},#{description},#{averageSpeed})")
     void addTrack(TrackInfo trackInfo);
 
 //    values(#{terminal},#{track},#{date},#{time},#{desc})

@@ -12,6 +12,7 @@ public class TrackInfo {
     private String date;
     private String time;
     private String description;
+    private String averageSpeed;
 
     public Integer getTerminal() {
         return terminal;
@@ -51,5 +52,13 @@ public class TrackInfo {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getAverageSpeed() {
+        return averageSpeed;
+    }
+
+    public void setAverageSpeed(String averageSpeed) {
+        this.averageSpeed = averageSpeed;
     }
 }
