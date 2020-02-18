@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Select;
 /**
  * Created by INvo
  * on 2020/1/8.
- *
+ * <p>
  * 直接操作数据库的底层实现接口
  */
 public interface ChatMapper {
@@ -21,6 +21,6 @@ public interface ChatMapper {
     @Insert("insert into accounts (user,password) values (#{user},#{password})")
     void insertAccounts(ChatInfo chatInfo);
 
-//    @Select("select * from accounts where user=#{user}")
-
+    @Select("select * from accounts ")
+    void foreachAccounts();
 }

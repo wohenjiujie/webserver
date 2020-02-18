@@ -26,4 +26,6 @@ public class ChatController {
     public void addAccounts(@RequestBody ChatInfo chatInfo) {
         chatService.insertAccounts(chatInfo);
     }
+
+
 }

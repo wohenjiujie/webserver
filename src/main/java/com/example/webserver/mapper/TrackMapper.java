@@ -29,7 +29,8 @@ public interface TrackMapper {
     TrackCounts getTrackCounts(Integer integer);
 
     /**
-     *移动端注册时的初始化创建
+     * 移动端注册时的初始化创建
+     *
      * @param tid
      * @param counts
      */
@@ -78,10 +79,8 @@ public interface TrackMapper {
      *
      * @param trackInfo
      */
-    @Insert("insert into trackInfo(terminal,track,date,time,description,mileage)values(#{terminal},#{track},#{date},#{time},#{description},#{mileage})")
+    @Insert("insert into trackInfo(terminal,track,date,time,description,mileage,bitmap)values(#{terminal},#{track},#{date},#{time},#{description},#{mileage},#{bitmap})")
     void addTrack(TrackInfo trackInfo);
-
-//    values(#{terminal},#{track},#{date},#{time},#{desc})
 
     /**
      * 删除track：通过terminal删除track
@@ -91,19 +90,11 @@ public interface TrackMapper {
     @Delete("delete from trackInfo where terminal=#{terminal} and track=#{track}")
     void deleteTrack(TrackInfo trackInfo);
 
-   /* @Delete("delete from test where terminal=#{terminal} and track=#{track}")
-    void deleteTrack1(Integer terminal,Integer track);
-
-    @Insert("insert into trackInfo(terminal,track,desc,date,mileage,time) values(#{terminal},#{track},#{desc},#{date},#{mileage},#{time})")
-    void addTrackInfo(TrackInfo trackInfo);*/
-
     @Select("select * from trackInfo where terminal=#{terminal} and track=#{track}")
     TrackInfo getTrackInfo(TrackInfo trackInfo);
 
-//    @Select("select * from trackInfo where terminal=#{terminal}")
-@Select("select * from trackInfo where terminal=#{terminal} order by 4 desc")
-List<TrackInfo> getTerminalInfo(Integer integer);
-
+    @Select("select * from trackInfo where terminal=#{terminal} order by 4 desc")
+    List<TrackInfo> getTerminalInfo(Integer integer);
 }
 
 

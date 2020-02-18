@@ -13,6 +13,7 @@ public class TrackInfo {
     private String time;
     private String description;
     private String mileage;
+    private String bitmap;
 
     public Integer getTerminal() {
         return terminal;
@@ -60,5 +61,13 @@ public class TrackInfo {
 
     public void setMileage(String mileage) {
         this.mileage = mileage;
+    }
+
+    public String getBitmap() {
+        return bitmap;
+    }
+
+    public void setBitmap(String bitmap) {
+        this.bitmap = bitmap;
     }
 }
