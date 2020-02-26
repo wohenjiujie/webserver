@@ -52,8 +52,6 @@ public class TrackController {
     public void increaseTerminalIdCounts(@PathVariable(value = "tid") Integer integer) {
         TrackCounts trackCounts = trackService.getTrackCounts(integer);
         trackService.increaseTerminalIdCounts(integer, (Integer) trackCounts.getCounts() + 1);
-//        int re = (Integer)trackCounts.getCounts() + 1;
-//        System.out.println(integer + "\n" + re);
     }
 
     /**
@@ -76,7 +74,6 @@ public class TrackController {
 
     @RequestMapping(value = "/searchTrackID/{terminal}", method = RequestMethod.GET)
     public List<TrackID> getTrackID(@PathVariable(value = "terminal") Integer integer) {
-
         try {
             List<TrackID> trackIDList = trackService.getTrackID(integer);
             return trackIDList;
@@ -133,5 +130,11 @@ public class TrackController {
     @GetMapping(value = "/createTrackCounts/{tid}")
     public void createTrackCounts(@PathVariable(value = "tid") Integer tid) {
         trackService.createTrackCounts(tid, 0);
+    }
+
+
+    @RequestMapping(value = "/getTerminalCounts/{terminal}",method = RequestMethod.GET)
+    public Integer getTerminalCounts( @PathVariable(value = "terminal") Integer integer) {
+        return trackService.getTerminalCounts(integer);
     }
 }

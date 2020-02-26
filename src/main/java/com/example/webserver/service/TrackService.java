@@ -89,4 +89,6 @@ public interface TrackService {
 
 
     List<TrackInfo> getTerminalInfo(Integer integer);
+
+    Integer getTerminalCounts(Integer integer);
 }

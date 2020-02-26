@@ -28,4 +28,11 @@ public class TrackCounts<T>{
         this.tid = tid;
     }
 
+    @Override
+    public String toString() {
+        return "TrackCounts{" +
+                "counts=" + counts +
+                ", tid=" + tid +
+                '}';
+    }
 }

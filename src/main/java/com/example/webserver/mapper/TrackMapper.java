@@ -95,6 +95,12 @@ public interface TrackMapper {
 
     @Select("select * from trackInfo where terminal=#{terminal} order by 4 desc")
     List<TrackInfo> getTerminalInfo(Integer integer);
+
+    /**
+     * test new model on getting counts from trackCounts
+     */
+    @Select("select count(*) from trackInfo where terminal=#{terminal}")
+    Integer getTerminalCounts( Integer integer);
 }
 
 

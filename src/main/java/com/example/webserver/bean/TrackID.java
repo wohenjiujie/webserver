@@ -14,4 +14,11 @@ public class TrackID {
     public void setTrack(Integer track) {
         this.track = track;
     }
+
+    @Override
+    public String toString() {
+        return "TrackID{" +
+                "track=" + track +
+                '}';
+    }
 }

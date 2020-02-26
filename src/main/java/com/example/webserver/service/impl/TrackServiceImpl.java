@@ -87,4 +87,9 @@ public class TrackServiceImpl implements TrackService {
     public List<TrackInfo> getTerminalInfo(Integer integer) {
         return trackMapper.getTerminalInfo(integer);
     }
+
+    @Override
+    public Integer getTerminalCounts(Integer integer) {
+        return trackMapper.getTerminalCounts(integer);
+    }
 }
