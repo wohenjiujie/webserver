@@ -1,6 +1,5 @@
 package com.example.webserver.service.impl;
 
-import com.example.webserver.bean.TrackCounts;
 import com.example.webserver.bean.TrackID;
 import com.example.webserver.bean.TrackInfo;
 import com.example.webserver.mapper.TrackMapper;
@@ -20,39 +19,16 @@ import java.util.List;
  */
 @Service("TrackService")
 public class TrackServiceImpl implements TrackService {
-
-    /*
-     *Autowired:把配置好的Bean拿来用，完成属性、方法的组装
-     * */
+    /**
+     * Autowired:把配置好的Bean拿来用，完成属性、方法的组装
+     */
     @Autowired
     private TrackMapper trackMapper;
-
-    @Override
-    public int getTerminalIdCounts(Integer integer) {
-        return trackMapper.getTerminalIdCounts(integer);
-    }
-
-    @Override
-    public void increaseTerminalIdCounts(Integer tid, Integer counts) {
-        trackMapper.increaseTerminalIdCounts(tid, counts);
-    }
-
-    @Override
-    public void decreaseTerminalIdCounts(Integer tid, Integer counts) {
-        trackMapper.decreaseTerminalIdCounts(tid, counts);
-    }
-
-    @Override
-    public TrackCounts getTrackCounts(Integer integer) {
-        return trackMapper.getTrackCounts(integer);
-    }
 
     @Override
     public List<TrackID> getTrackID(Integer integer) {
         return trackMapper.getTrackID(integer);
     }
-
-
 
     @Override
     public void addTrack(TrackInfo trackInfo) {
@@ -64,23 +40,9 @@ public class TrackServiceImpl implements TrackService {
         trackMapper.deleteTrack(trackInfo);
     }
 
-    /*@Override
-    public void addTrackInfo(TrackInfo trackInfo) {
-        trackMapper.addTrackInfo(trackInfo);
-    }
-    @Override
-    public void deleteTrack1(Integer terminal,Integer track) {
-        trackMapper.deleteTrack1(terminal,track);
-    }*/
-
     @Override
     public TrackInfo getTrackInfo(TrackInfo trackInfo) {
         return trackMapper.getTrackInfo(trackInfo);
-    }
-
-    @Override
-    public void createTrackCounts(Integer tid,Integer counts) {
-        trackMapper.createTrackCounts(tid,counts);
     }
 
     @Override

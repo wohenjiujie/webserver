@@ -6,7 +6,6 @@ package com.example.webserver.bean;
  * 轨迹信息实体类
  */
 public class TrackInfo {
-
     private Integer terminal;
     private Integer track;
     private String date;

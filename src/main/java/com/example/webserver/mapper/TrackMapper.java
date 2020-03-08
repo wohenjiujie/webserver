@@ -1,6 +1,5 @@
 package com.example.webserver.mapper;
 
-import com.example.webserver.bean.TrackCounts;
 import com.example.webserver.bean.TrackID;
 import com.example.webserver.bean.TrackInfo;
 
@@ -18,53 +17,6 @@ import java.util.List;
  * 对数据库直接做操作的接口底层方法
  */
 public interface TrackMapper {
-
-    /**
-     * counts：通过tid返回trackCounts数据
-     *
-     * @param integer
-     * @return
-     */
-    @Select("select * from trackCounts where tid=#{tid}")
-    TrackCounts getTrackCounts(Integer integer);
-
-    /**
-     * 移动端注册时的初始化创建
-     *
-     * @param tid
-     * @param counts
-     */
-
-    @Insert("insert into trackCounts (tid,counts) values (#{tid},#{counts})")
-    void createTrackCounts(Integer tid, Integer counts);
-
-    /**
-     * 查询counts：通过tid查询当前终端下的记录次数
-     *
-     * @param integer
-     * @return
-     */
-    @Select("select counts from trackCounts where tid=#{tid}")
-    int getTerminalIdCounts(Integer integer);
-
-    /**
-     * 增加counts：通过tid增加当前终端下的计数
-     *
-     * @param tid
-     * @param counts
-     */
-    @Update("update trackCounts set counts=#{counts} where tid=#{tid}")
-    void increaseTerminalIdCounts(Integer tid, Integer counts);
-
-    /**
-     * 减少counts：通过tid增加当前终端下的计数
-     *
-     * @param tid
-     * @param counts
-     */
-    @Update("update trackCounts set counts=#{counts} where tid=#{tid}")
-    void decreaseTerminalIdCounts(Integer tid, Integer counts);
-
     /**
      * 查询track：通过terminal查询当前终端下的所有track
      *
@@ -73,6 +25,24 @@ public interface TrackMapper {
      */
     @Select("select track from trackInfo where terminal=#{terminal}")
     List<TrackID> getTrackID(Integer integer);
+
+    /**
+     * 查询trackInfo：通过terminal倒序查询当前终端下的所有trackInfo
+     *
+     * @param integer
+     * @return
+     */
+    @Select("select * from trackInfo where terminal=#{terminal} order by 4 desc")
+    List<TrackInfo> getTerminalInfo(Integer integer);
+
+    /**
+     * 查询trackInfo：通过terminal查询指定track的trackInfo
+     *
+     * @param trackInfo
+     * @return
+     */
+    @Select("select * from trackInfo where terminal=#{terminal} and track=#{track}")
+    TrackInfo getTrackInfo(TrackInfo trackInfo);
 
     /**
      * 添加track：通过terminal添加track
@@ -90,17 +60,14 @@ public interface TrackMapper {
     @Delete("delete from trackInfo where terminal=#{terminal} and track=#{track}")
     void deleteTrack(TrackInfo trackInfo);
 
-    @Select("select * from trackInfo where terminal=#{terminal} and track=#{track}")
-    TrackInfo getTrackInfo(TrackInfo trackInfo);
-
-    @Select("select * from trackInfo where terminal=#{terminal} order by 4 desc")
-    List<TrackInfo> getTerminalInfo(Integer integer);
-
     /**
-     * test new model on getting counts from trackCounts
+     * 查询counts：通过terminal查询track的数量
+     *
+     * @param integer
+     * @return
      */
     @Select("select count(*) from trackInfo where terminal=#{terminal}")
-    Integer getTerminalCounts( Integer integer);
+    Integer getTerminalCounts(Integer integer);
 }
 
 
