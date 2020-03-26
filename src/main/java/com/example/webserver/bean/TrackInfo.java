@@ -14,6 +14,19 @@ public class TrackInfo {
     private String mileage;
     private String bitmap;
 
+    @Override
+    public String toString() {
+        return "TrackInfo{" +
+                "terminal=" + terminal +
+                ", track=" + track +
+                ", date='" + date + '\'' +
+                ", time='" + time + '\'' +
+                ", description='" + description + '\'' +
+                ", mileage='" + mileage + '\'' +
+                ", bitmap='" + bitmap + '\'' +
+                '}';
+    }
+
     public Integer getTerminal() {
         return terminal;
     }
@@ -68,18 +81,5 @@ public class TrackInfo {
 
     public void setBitmap(String bitmap) {
         this.bitmap = bitmap;
-    }
-
-    @Override
-    public String toString() {
-        return "TrackInfo{" +
-                "terminal=" + terminal +
-                ", track=" + track +
-                ", date='" + date + '\'' +
-                ", time='" + time + '\'' +
-                ", description='" + description + '\'' +
-                ", mileage='" + mileage + '\'' +
-                ", bitmap='" + bitmap + '\'' +
-                '}';
     }
 }
